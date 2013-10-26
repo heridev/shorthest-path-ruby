@@ -7,21 +7,20 @@ class Graph
   attr_reader :vertices
 
   def initialize(graph)
-    @vertices = Hash.new { |h, k| h[k] = Vertex.new(k, [], Float::INFINITY) }
-    @edges = {}
+    initialize_vertices
     format_graph_values graph
+    @edges = {}
     @dijkstra_source = nil
   end
 
   def dijkstra(source)
     vertex_values = @vertices.values
-    @vertices[source].dist = 0
+    @vertices[source].set_zero_for_initial_vertice
 
     until vertex_values.empty?
-      get_vertices_distances vertex_values
-      vertices_dist = vertex_values.min_by { |vertex| vertex.dist }
-      break if vertices_dist.dist == Float::INFINITY
-      vertex_values.delete(vertices_dist)
+      initial_vertice = get_vertices_distances vertex_values
+      break if initial_vertice.distance == Float::INFINITY
+      vertex_values.delete(initial_vertice)
     end
 
     @dijkstra_source = source
@@ -30,26 +29,26 @@ class Graph
   def shortest_path(start, finish)
     dijkstra(start) unless @dijkstra_source == start
     path = []
-    u = finish
-    while u
-      path.unshift(u)
-      u = @vertices[u].prev
+    first_array_element = finish
+    while first_array_element
+      path.unshift(first_array_element)
+      first_array_element = @vertices[first_array_element].prev_vertice
     end
-    [path, @vertices[finish].dist]
+    [path, @vertices[finish].distance]
   end
 
   private
 
   def get_vertices_distances(vertex_values)
-    vertices_dist = vertex_values.min_by { |vertex| vertex.dist }
-    vertices_dist.neighbours.each do |v|
+    initial_vertice = vertex_values.min_by { |vertex| vertex.distance }
+    initial_vertice.neighbours.each do |v|
       vv = @vertices[v]
-      alt = vertices_dist.dist + @edges[[vertices_dist.name, v]]
-      if vertex_values.include?(vv) && alt < vv.dist
-        vv.dist = alt
-        vv.prev = vertices_dist.name
+      alt = initial_vertice.distance + @edges[[initial_vertice.name, v]]
+      if vertex_values.include?(vv) && alt < vv.distance
+        vv.change_distance_and_previous alt, initial_vertice
       end
     end
+   initial_vertice
   end
 
   def format_graph_values(graph)
@@ -58,5 +57,9 @@ class Graph
       @vertices[v2].neighbours << v1
       @edges[[v1, v2]] = @edges[[v2, v1]] = dist
     end
+  end
+
+  def initialize_vertices
+    @vertices = Hash.new { |h, k| h[k] = Vertex.new(k, [], Float::INFINITY) }
   end
 end
