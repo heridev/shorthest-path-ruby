@@ -18,7 +18,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Using the rake task
+
+   $ rake get_path   
 
 ## Contributing
 
