@@ -21,6 +21,11 @@ describe Graph do
 
   let(:graph_result) { graph.shortest_path(:a, :e) }
 
+  it 'should contain its neighbours for some vertices' do
+    expect(graph.vertices[:a].neighbours).to eq([:b, :c, :f ])
+    expect(graph.vertices[:b].neighbours).to eq([:a, :c, :d ])
+  end
+
   it 'should return the shorthest cost value' do
     expect(graph_result[1]).to eq(20)
   end
@@ -29,5 +34,8 @@ describe Graph do
     format_result = graph_result[0].join(' -> ')
     expect(format_result).to eq('a -> c -> f -> e')
   end
+
+
+
 
 end

@@ -1,7 +1,10 @@
 # encoding: UTF-8
+require 'pry'
 require_relative 'vertex'
 # this class is responsible to calculate the shorthest path
 class Graph
+
+  attr_reader :vertices
 
   def initialize(graph)
     @vertices = Hash.new { |h, k| h[k] = Vertex.new(k, [], Float::INFINITY) }
@@ -12,7 +15,6 @@ class Graph
 
   def dijkstra(source)
     vertex_values = @vertices.values
-    format_vertex_values vertex_values
     @vertices[source].dist = 0
 
     until vertex_values.empty?
@@ -55,13 +57,6 @@ class Graph
       @vertices[v1].neighbours << v2
       @vertices[v2].neighbours << v1
       @edges[[v1, v2]] = @edges[[v2, v1]] = dist
-    end
-  end
-
-  def format_vertex_values(vertex_values)
-    vertex_values.each do |v|
-      v.dist = Float::INFINITY
-      v.prev = nil
     end
   end
 end
