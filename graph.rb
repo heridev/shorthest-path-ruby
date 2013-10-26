@@ -1,6 +1,5 @@
 # encoding: UTF-8
-require 'pry'
-require_relative 'vertex'
+#
 # this class is responsible to calculate the shorthest path
 class Graph
 
@@ -8,8 +7,8 @@ class Graph
 
   def initialize(graph)
     initialize_vertices
-    format_graph_values graph
     @edges = {}
+    format_graph_values graph
     @dijkstra_source = nil
   end
 
