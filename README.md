@@ -1,6 +1,6 @@
 # Dijkstraruby
 
-TODO: Write a gem description
+Here we have the implementation of dijkstra algorithm in ruby
 
 ## Installation
 
