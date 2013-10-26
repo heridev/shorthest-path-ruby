@@ -20,7 +20,7 @@ Or install it yourself as:
 
 Using the rake task
 
-   $ rake get_path   
+    $ rake get_path   
 
 ## Contributing
 
