@@ -1,7 +1,7 @@
 # encoding: UTF-8
 #
-# this class is responsible to calculate the shorthest path
 module Dijkstraruby
+  # This class is responsible to calculate the shorthest path
   class Graph
 
     attr_reader :vertices

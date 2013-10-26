@@ -1,6 +1,7 @@
 # encoding: UTF-8
 require 'spec_helper'
 
+# Testing graph class
 module Dijkstraruby
   describe Graph do
 
@@ -22,8 +23,8 @@ module Dijkstraruby
     let(:graph_result) { graph.shortest_path(:a, :e) }
 
     it 'should contain its neighbours for some vertices' do
-      expect(graph.vertices[:a].neighbours).to eq([:b, :c, :f ])
-      expect(graph.vertices[:b].neighbours).to eq([:a, :c, :d ])
+      expect(graph.vertices[:a].neighbours).to eq([:b, :c, :f])
+      expect(graph.vertices[:b].neighbours).to eq([:a, :c, :d])
     end
 
     it 'should return the shorthest cost value' do

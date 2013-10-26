@@ -1,6 +1,7 @@
 # encoding: UTF-8
 require 'spec_helper'
 
+# Test for Vertex Class
 module Dijkstraruby
   describe Vertex do
 

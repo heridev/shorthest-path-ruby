@@ -1,7 +1,6 @@
 # encoding: UTF-8
-# class reponsible for vertices
-#
 module Dijkstraruby
+  # class reponsible for vertices
   class Vertex
     attr_accessor :name, :neighbours, :distance, :prev_vertice
 

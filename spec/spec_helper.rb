@@ -1,4 +1,6 @@
-$:<< File.realpath('./lib')
+# encoding: UTF-8
+#
+$LOAD_PATH << File.realpath('./lib')
 
 require 'dijkstraruby'
 
